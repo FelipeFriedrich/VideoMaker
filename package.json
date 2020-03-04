@@ -4,7 +4,8 @@
   "description": "robos para gerar automaticamente um video no youtube",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/FelipeFriedrich/VideoMaker/issues"
   },
-  "homepage": "https://github.com/FelipeFriedrich/VideoMaker#readme"
+  "homepage": "https://github.com/FelipeFriedrich/VideoMaker#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
