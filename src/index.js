@@ -1,5 +1,6 @@
 const rdSync = require('readline-sync');
-const robots = { require('./robots/text')};
+const robots = {text: require('../robots/text')};
+
 
 function start(){
     const content = {}
