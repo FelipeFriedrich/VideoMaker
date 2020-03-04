@@ -1,0 +1,26 @@
+{
+  "name": "videomaker",
+  "version": "1.0.0",
+  "description": "robos para gerar automaticamente um video no youtube",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelipeFriedrich/VideoMaker.git"
+  },
+  "keywords": [
+    "Automacao",
+    "Watson",
+    "youtube",
+    "robos",
+    "node"
+  ],
+  "author": "Felipe Friedrich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FelipeFriedrich/VideoMaker/issues"
+  },
+  "homepage": "https://github.com/FelipeFriedrich/VideoMaker#readme"
+}
