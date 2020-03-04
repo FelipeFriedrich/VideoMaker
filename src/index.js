@@ -1,11 +1,13 @@
 const rdSync = require('readline-sync');
-
+const robots = { require('./robots/text')};
 
 function start(){
     const content = {}
 
     content.searchTerm = askAndReturnSearchTerm();
     content.prefix = askAndReturnPrefix();
+
+    robots.text(content);
 
     function askAndReturnSearchTerm(){
         return rdSync.question('Type a Wikipedia search term: ')
