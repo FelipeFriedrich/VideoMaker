@@ -1,14 +1,15 @@
 const rdSync = require('readline-sync');
 const robots = {text: require('../robots/text')};
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 
-function start(){
+async function start(){
     const content = {}
 
     content.searchTerm = askAndReturnSearchTerm();
     content.prefix = askAndReturnPrefix();
 
-    robots.text(content);
+    await robots.text(content);
 
     function askAndReturnSearchTerm(){
         return rdSync.question('Type a Wikipedia search term: ')
