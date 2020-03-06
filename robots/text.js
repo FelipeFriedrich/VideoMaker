@@ -1,6 +1,6 @@
 const algorithmia = require('algorithmia');
 const algorithmiaApiKey = require('../credentials/algorithmia.json').apiKey;
-const watsonApiKey = require('../credentials/watson-nlu.json').apiKey;
+const watsonApiKey = require('../credentials/watson-nlu.json').apikey;
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
 const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey);
 
@@ -17,6 +17,7 @@ async function robot(content){
     await fetchContentFromWikipedia(content);
     sanatizeContent(content);
     await sentenceSplit(content);
+    await fetchKeywordsOfAllSentences(content);
 
     async function fetchContentFromWikipedia(content){
         //Colect information from Wikipedia
@@ -58,7 +59,16 @@ async function robot(content){
             })
         })
     }
-    async function fetchWatsonAndReturnKeywords(sentence){
+
+
+    async function fetchKeywordsOfAllSentences(){
+        for(const sentence of content.sentences){
+            sentence.keywords = await fetchWatsonAndReturnKeywords(sentence.text)
+        }
+    }
+
+
+    async function fetchWatsonAndReturnKeywords(sentence){   
         return new Promise((resolve, reject) => {
             nlu.analyze({
                 text:sentence,
