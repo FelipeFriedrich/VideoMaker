@@ -4,20 +4,22 @@ const watsonApiKey = require('../credentials/watson-nlu.json').apikey;
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
 const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey);
 
-var nlu = new NaturalLanguageUnderstandingV1({
+const nlu = new NaturalLanguageUnderstandingV1({
     iam_apikey: watsonApiKey,
     version: '2018-04-05',
     url: 'https://gateway.watsonplatform.net/natural-language-understanding/api/'
 })
 
+const state = require('./state')
 
+async function robot(){
+    const content = state.load();    
     
-
-async function robot(content){
     await fetchContentFromWikipedia(content);
     sanatizeContent(content);
     await sentenceSplit(content);
     await fetchKeywordsOfAllSentences(content);
+    state.save(content);
 
     async function fetchContentFromWikipedia(content){
         //Colect information from Wikipedia
@@ -80,7 +82,7 @@ async function robot(content){
                     reject(error)
                     return
                 }
-                const keywords =  response.result.keywords.map(keyword => {
+                const keywords =  response.keywords.map(keyword => {
                     return keyword.text
                 })
                 resolve(keywords);
