@@ -5,11 +5,11 @@ const robots = {
     image: require('../robots/image'),    
 };
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
+
 
 async function start(){
-    //await robots.input();
-    //await robots.text();
+    await robots.input();
+    await robots.text();
     await robots.image();
     
     const content = robots.state.load();
