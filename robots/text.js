@@ -8,13 +8,12 @@ const nlu = new NaturalLanguageUnderstandingV1({
     iam_apikey: watsonApiKey,
     version: '2018-04-05',
     url: 'https://gateway.watsonplatform.net/natural-language-understanding/api/'
-})
+});
 
-const state = require('./state')
+const state = require('./state');
 
 async function robot(){
-    const content = state.load();    
-    
+    const content = state.load();
     await fetchContentFromWikipedia(content);
     sanatizeContent(content);
     await sentenceSplit(content);
@@ -32,7 +31,7 @@ async function robot(){
         content.SourceContentOriginal = wikipediaContent.summary;
     }
     
-    function sanatizeContent(){    
+    function sanatizeContent(){
     content.SourceContentSanitized = removeDatesInParenthesesAndBlankLines(content.SourceContentOriginal);
     }
     
@@ -70,7 +69,7 @@ async function robot(){
     }
 
 
-    async function fetchWatsonAndReturnKeywords(sentence){   
+    async function fetchWatsonAndReturnKeywords(sentence){
         return new Promise((resolve, reject) => {
             nlu.analyze({
                 text:sentence,
